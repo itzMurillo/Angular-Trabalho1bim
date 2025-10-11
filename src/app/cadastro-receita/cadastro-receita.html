@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Cadastro de Receita</h2>
+
+  <form (ngSubmit)="salvar()">
+    <input
+      type="text"
+      [(ngModel)]="descricao"
+      name="descricao"
+      placeholder="Descrição"
+      required
+    />
+    <input
+      type="number"
+      [(ngModel)]="valor"
+      name="valor"
+      placeholder="Valor"
+      required
+      min="1"
+    />
+    <select [(ngModel)]="categoria" name="categoria">
+      <option>salário</option>
+      <option>freelance</option>
+      <option>investimentos</option>
+      <option>outros</option>
+    </select>
+    <button type="submit">Salvar</button>
+  </form>
+</div>

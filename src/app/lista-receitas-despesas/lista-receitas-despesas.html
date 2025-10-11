@@ -1,0 +1,161 @@
+<div class="titulo">
+  <h2>Lista de Receitas e Despesas</h2>
+</div>
+
+<div class="input">
+  <input
+    type="text"
+    [(ngModel)]="filtro"
+    placeholder="Filtrar por descrição..."
+  />
+</div>
+
+<div class="texto-receitas">
+  <h3>Receitas</h3>
+</div>
+<table>
+  <tr>
+    <th>Descrição</th>
+    <th>Valor</th>
+    <th>Categoria</th>
+    <th>Ações</th>
+  </tr>
+
+  <!--loop que mostrar cada receita filtrada-->
+  <tr *ngFor="let r of receitasFiltradas">
+    <td>
+      <!--mostra descrição normal se não estiver editando-->
+      <span *ngIf="!(editandoTipo === 'receita' && editandoId === r.id)">
+        {{ r.descricao }}
+      </span>
+      <!--mostra input para editar descrição se estiver editando-->
+      <input
+        *ngIf="editandoTipo === 'receita' && editandoId === r.id"
+        [(ngModel)]="editandoDescricao"
+      />
+    </td>
+    <td>
+      <!--mostra valor normal-->
+      <span *ngIf="!(editandoTipo === 'receita' && editandoId === r.id)">
+        {{ r.valor | currency:'BRL' }}
+      </span>
+      <!--input para editar valor-->
+      <input
+        *ngIf="editandoTipo === 'receita' && editandoId === r.id"
+        type="number"
+        [(ngModel)]="editandoValor"
+      />
+    </td>
+    <td>
+      <!--mostra categoria normal-->
+      <span *ngIf="!(editandoTipo === 'receita' && editandoId === r.id)">
+        {{ r.categoria }}
+      </span>
+      <!--input para editar categoria-->
+      <input
+        *ngIf="editandoTipo === 'receita' && editandoId === r.id"
+        [(ngModel)]="editandoCategoria"
+      />
+    </td>
+    <td>
+      <!--botão Editar aparece só quando não está editando-->
+      <button
+        *ngIf="!(editandoTipo === 'receita' && editandoId === r.id)"
+        (click)="editarReceita(r.id)"
+      >
+        Editar
+      </button>
+      <!--botão Salvar aparece só quando está editando-->
+      <button
+        *ngIf="editandoTipo === 'receita' && editandoId === r.id"
+        (click)="salvarEdicao()"
+      >
+        Salvar
+      </button>
+      <!--botão Cancelar aparece só quando está editando-->
+      <button
+        *ngIf="editandoTipo === 'receita' && editandoId === r.id"
+        (click)="cancelarEdicao()"
+      >
+        Cancelar
+      </button>
+      <!--Botão Excluir sempre aparece-->
+      <button (click)="excluirReceita(r.id)">Excluir</button>
+    </td>
+  </tr>
+</table>
+
+<div class="texto-despesas">
+  <h3>Despesas</h3>
+</div>
+<table>
+  <tr>
+    <th>Descrição</th>
+    <th>Valor</th>
+    <th>Categoria</th>
+    <th>Ações</th>
+  </tr>
+
+  <!--loop para mostrar cada despesa filtradaa-->
+  <tr *ngFor="let d of despesasFiltradas">
+    <td>
+      <!--mostra descrição normal-->
+      <span *ngIf="!(editandoTipo === 'despesa' && editandoId === d.id)">
+        {{ d.descricao }}
+      </span>
+      <!--input para editar descrição-->
+      <input
+        *ngIf="editandoTipo === 'despesa' && editandoId === d.id"
+        [(ngModel)]="editandoDescricao"
+      />
+    </td>
+    <td>
+      <!--Mostra valor normal-->
+      <span *ngIf="!(editandoTipo === 'despesa' && editandoId === d.id)">
+        {{ d.valor | currency:'BRL' }}
+      </span>
+      <!--input para editar valor-->
+      <input
+        *ngIf="editandoTipo === 'despesa' && editandoId === d.id"
+        type="number"
+        [(ngModel)]="editandoValor"
+      />
+    </td>
+    <td>
+      <!--mostra categoria normal-->
+      <span *ngIf="!(editandoTipo === 'despesa' && editandoId === d.id)">
+        {{ d.categoria }}
+      </span>
+      <!--input para editar categoria-->
+      <input
+        *ngIf="editandoTipo === 'despesa' && editandoId === d.id"
+        [(ngModel)]="editandoCategoria"
+      />
+    </td>
+    <td>
+      <!--Botão Editar-->
+      <button
+        *ngIf="!(editandoTipo === 'despesa' && editandoId === d.id)"
+        (click)="editarDespesa(d.id)"
+      >
+        Editar
+      </button>
+      <!--Botão Salvar-->
+      <button
+        *ngIf="editandoTipo === 'despesa' && editandoId === d.id"
+        (click)="salvarEdicao()"
+      >
+        Salvar
+      </button>
+      <!--Botão Cancelar-->
+      <button
+        *ngIf="editandoTipo === 'despesa' && editandoId === d.id"
+        (click)="cancelarEdicao()"
+      >
+        Cancelar
+      </button>
+      <!--Botão Excluir-->
+      <button (click)="excluirDespesa(d.id)">Excluir</button>
+    </td>
+  </tr>
+</table>

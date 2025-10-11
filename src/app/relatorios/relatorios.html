@@ -1,0 +1,23 @@
+<div class="pagina">
+  <div class="relatorios-card">
+    <h2>Relatórios</h2>
+
+    <p>
+      <b>Saldo Mensal:</b>
+      <span [style.color]="saldo >= 0 ? 'green' : 'red'">
+        {{ saldo | currency:'BRL' }}
+      </span>
+    </p>
+
+    <h3>Percentual por tipo de gasto</h3>
+    <ul>
+      <li>Alimentação: {{ getPercentualCategoria('alimentação') }}%</li>
+      <li>Transporte: {{ getPercentualCategoria('transporte') }}%</li>
+      <li>Moradia: {{ getPercentualCategoria('moradia') }}%</li>
+      <li>Lazer: {{ getPercentualCategoria('lazer') }}%</li>
+      <li>Outros: {{ getPercentualCategoria('outros') }}%</li>
+    </ul>
+
+    <p><b>Média das Despesas:</b> {{ getMediaDespesas() | currency:'BRL' }}</p>
+  </div>
+</div>

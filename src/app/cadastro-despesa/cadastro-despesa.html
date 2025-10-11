@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Cadastro de Despesa</h2>
+
+  <form (ngSubmit)="salvar()">
+    <input
+      type="text"
+      [(ngModel)]="descricao"
+      name="descricao"
+      placeholder="Descrição"
+      required
+    />
+    <input
+      type="number"
+      [(ngModel)]="valor"
+      name="valor"
+      placeholder="Valor"
+      required
+      min="1"
+    />
+    <select [(ngModel)]="categoria" name="categoria">
+      <option>alimentação</option>
+      <option>transporte</option>
+      <option>moradia</option>
+      <option>lazer</option>
+      <option>outros</option>
+    </select>
+    <button type="submit">Salvar</button>
+  </form>
+</div>

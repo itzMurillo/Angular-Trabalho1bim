@@ -1,0 +1,62 @@
+<div class="container">
+  <h2>Meu Orçamento</h2>
+
+  <div class="cards">
+    <div class="card receita">
+      <h3>Receita Total</h3>
+      <p>{{ formatarMoeda(receitaTotal) }}</p>
+    </div>
+
+    <div class="card despesa">
+      <h3>Despesa Total</h3>
+      <p>{{ formatarMoeda(despesaTotal) }}</p>
+    </div>
+
+    <div class="card saldo" [ngClass]="getClasseSaldo()">
+      <h3>Saldo Final</h3>
+      <p>{{ formatarMoeda(saldoFinal) }}</p>
+    </div>
+  </div>
+
+  <div class="atalhos">
+    <h3>Ações Rápidas</h3>
+    <button routerLink="/cadastro-receita" class="btn-receita">
+      Adicionar Receita
+    </button>
+    <button routerLink="/cadastro-despesas" class="btn-despesa">
+      Adicionar Despesa
+    </button>
+    <button routerLink="/lista-receitas-despesas" class="btn-lista">
+      Ver Lista
+    </button>
+    <button routerLink="/relatorios" class="btn-relatorios">Relatórios</button>
+  </div>
+
+  <hr />
+
+  <h3>Últimas Transações</h3>
+  <div class="ultimas">
+    <div>
+      <h4>Receitas</h4>
+      <ul>
+        <li *ngFor="let r of getUltimasTransacoes().receitas">
+          {{ r.descricao }} - {{ formatarMoeda(r.valor) }} ({{ r.categoria }})
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h4>Despesas</h4>
+      <ul>
+        <li *ngFor="let d of getUltimasTransacoes().despesas">
+          {{ d.descricao }} - {{ formatarMoeda(d.valor) }} ({{ d.categoria }})
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<hr />
+<footer>
+  Desenvolvedores:
+  <br />
+  Murillo G. Moresco / Ra:60000080 | Pedro H. M. Becker / Ra:60003244
+</footer>
